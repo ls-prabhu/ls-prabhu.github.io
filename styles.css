@@ -1,0 +1,557 @@
+:root {
+  --bg-color: #121212;
+  --bg-secondary: #1f1f1f;
+  --text-color: #ffffff;
+  --accent-color: #ffcc00;
+  --button-color: #007bff;
+}
+
+.light-mode {
+  --bg-color: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --text-color: #333333;
+  --accent-color: #ff6600;
+  --button-color: #0056b3;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  --bg-color: #121212;
+  --bg-secondary: #1f1f1f;
+  --text-color: #ffffff;
+  --accent-color: #ffcc00;
+  --button-color: #007bff;
+}
+
+/* Light mode styles */
+body.light-mode {
+  --bg-color: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --text-color: #333333;
+  --accent-color: #ff6600;
+  --button-color: #0056b3;
+}
+
+header {
+  padding: 20px;
+  background: var(--bg-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+nav {
+  background: var(--bg-secondary);
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+section {
+  margin: 30px 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background: var(--bg-secondary);
+}
+
+.project a {
+  color: var(--accent-color);
+}
+
+footer {
+  padding: 10px;
+  background: var(--bg-secondary);
+  margin-top: 20px;
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+}
+
+.skills-list li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 5px 0;
+}
+
+@media (max-width: 767px) {
+  iframe {
+    display: none;
+  }
+}
+
+#header-content {
+  position: relative;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: var(--button-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.theme-toggle:hover {
+  background-color: var(--accent-color);
+}
+
+/* Loader styles */
+.loader {
+  width: 130px;
+  height: 170px;
+  position: fixed; /* Use fixed to center it on the screen */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for the loader's size */
+  font-family: inherit;
+  z-index: 9999; /* Ensure it appears above other elements */
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: 30px;
+  left: 15px;
+  z-index: 1;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 20px solid #1b2a33;
+  transform: scale(0);
+  transition: all 0.2s ease;
+}
+
+.loader::after {
+  border-right: 15px solid transparent;
+  border-bottom: 20px solid #162229;
+}
+
+.loader .getting-there {
+  width: 120%;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: -7%;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: white;
+}
+
+.loader .binary.light-mode {
+  width: 100%;
+  height: 140px;
+  display: block;
+  color: rgb(0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 15px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.loader .binary.dark-mode {
+  width: 100%;
+  height: 140px;
+  display: block;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: 0;
+  left: 15px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.loader .binary::before,
+.loader .binary::after {
+  font-family: "Lato";
+  font-size: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.loader .binary:nth-child(1)::before {
+  content: "0";
+  animation: a 1.1s linear infinite;
+}
+
+.loader .binary:nth-child(1)::after {
+  content: "0";
+  animation: b 1.3s linear infinite;
+}
+
+.loader .binary:nth-child(2)::before {
+  content: "1";
+  animation: c 0.9s linear infinite;
+}
+
+.loader .binary:nth-child(2)::after {
+  content: "1";
+  animation: d 0.7s linear infinite;
+}
+
+.loader.JS_on::before,
+.loader.JS_on::after {
+  transform: scale(1);
+}
+
+@keyframes a {
+  0% {
+    transform: translate(30px, 0) rotate(30deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(30px, 150px) rotate(-50deg);
+    opacity: 1;
+  }
+}
+
+@keyframes b {
+  0% {
+    transform: translate(50px, 0) rotate(-40deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(40px, 150px) rotate(80deg);
+    opacity: 1;
+  }
+}
+
+@keyframes c {
+  0% {
+    transform: translate(70px, 0) rotate(10deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(60px, 150px) rotate(70deg);
+    opacity: 1;
+  }
+}
+
+@keyframes d {
+  0% {
+    transform: translate(30px, 0) rotate(-50deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(45px, 150px) rotate(30deg);
+    opacity: 1;
+  }
+}
+
+/* Style for the random sentence */
+.random-sentence.dark-mode {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: white;
+  font-family: "Lato", sans-serif;
+  text-align: center;
+}
+
+.random-sentence.light-mode {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  font-family: "Lato", sans-serif;
+  text-align: center;
+}
+
+/* Hide the webpage content initially */
+.content {
+  display: none;
+}
+
+h1 {
+  font-family: "Shadows Into Light", cursive;
+  font-size: 60px;
+  margin: auto;
+}
+
+header p {
+  margin: auto;
+}
+
+#title {
+  font-size: 50px;
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+img {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* Updated styles for the about section */
+#about-content {
+  text-align: center;
+  line-height: 1.5;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 10px;
+  font-family: "DM Serif Text", serif;
+  font-size: 25px;
+}
+
+#about-content div {
+  display: block;
+  text-align: center;
+  margin: 0;
+}
+
+/* Make sure the section background is correct */
+#about {
+  background-color: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#subtitle {
+  font-family: "Boldonse", system-ui;
+  letter-spacing: 1px;
+}
+/*button*/
+/* From Uiverse.io by Madflows */
+.button {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: 1.5rem;
+  background: #3d3a4e;
+  background-size: 400%;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+}
+
+.button-content {
+  position: relative;
+  z-index: 1;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  width: 100%;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(
+    82.3deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  transition: all 0.475s;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1000px; /* Adjust based on your design */
+  margin: 0 auto;
+}
+
+@media (max-width: 1099px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr); /* Ensure 2 columns max */
+  }
+}
+
+@media (max-width: 750px) {
+  .card-grid {
+    grid-template-columns: 1fr; /* Ensure 1 column max */
+  }
+}
+
+/* Card grid layout with responsive support */
+@media (max-width: 900px) and (min-width: 600px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 350px); /* Two cards per row */
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Center the grid horizontally */
+    margin: 0 auto;
+    max-width: 720px; /* Accommodate two cards plus gap */
+  }
+}
+
+@media (min-width: 1500px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 350px); /* Two cards per row on desktop */
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Center the grid horizontally */
+    margin: 0 auto;
+    max-width: 750px;
+  }
+}
+
+/* Mobile responsiveness for cards */
+@media (max-width: 768px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column for mobile */
+    gap: 20px;
+    justify-content: center; /* Centers content inside the grid */
+    align-items: center;
+    margin: 0 auto; /* Ensures centering */
+    text-align: center;
+  }
+
+  .card {
+    width: 100%; /* Make cards take full width of container */
+  }
+}
+
+.card-container {
+  width: 100%;
+  margin-bottom: 20px;
+  perspective: 1000px;
+}
+
+.card {
+  width: 250px;
+  height: 150px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+  margin: 0 auto; /* Center card in its container */
+}
+
+/* Make card flip work with touch on mobile */
+.card:hover,
+.card:active,
+.card:focus {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode card styles (default) */
+.card-front {
+  background: linear-gradient(135deg, #3a3a3a, #1e1e1e);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+.card-back {
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  color: white;
+  transform: rotateY(180deg);
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Light mode card styles */
+.light-mode .card-front {
+  background: linear-gradient(135deg, #e0e0e0, #c0c0c0);
+  color: #333333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.light-mode .card-back {
+  background: linear-gradient(135deg, #ff9800, #e67e22);
+  color: #333333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Make sure the Experience section aligns elements properly */
+.Experience {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ensure the view project link is properly aligned */
+.Experience > a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 16px;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.Experience > a:hover {
+  background-color: var(--button-color);
+}
+#theme-toggle {
+  margin-left: 0; /* Ensures no extra spacing on the left */
+  order: -1; /* Moves the button to the start */
+}
