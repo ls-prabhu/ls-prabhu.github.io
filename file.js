@@ -1,34 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Dark/Light mode toggle
-  const themeToggle = document.getElementById("theme-toggle");
   const body = document.body;
+  const themeToggle = document.getElementById("theme-toggle");
 
-  // Check for saved user preference, defaulting to dark mode
+  // Dark/Light mode setup
   const savedMode = localStorage.getItem("mode") || "dark";
+
   if (savedMode === "light") {
     body.classList.add("light-mode");
-    themeToggle.textContent = "🌙"; // Moon emoji for light mode
+    if (themeToggle) themeToggle.textContent = "🌙";
   } else {
     body.classList.add("dark-mode");
-    themeToggle.textContent = "🌞"; // Sun emoji for dark mode
+    if (themeToggle) themeToggle.textContent = "🌞";
   }
 
-  // Toggle dark/light mode on button click
-  themeToggle.addEventListener("click", () => {
-    if (body.classList.contains("dark-mode")) {
-      body.classList.remove("dark-mode");
-      body.classList.add("light-mode");
-      themeToggle.textContent = "🌙"; // Moon emoji for light mode
-      localStorage.setItem("mode", "light");
-    } else {
-      body.classList.remove("light-mode");
-      body.classList.add("dark-mode");
-      themeToggle.textContent = "🌞"; // Sun emoji for dark mode
-      localStorage.setItem("mode", "dark");
-    }
-  });
+  // Theme toggle click handler
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const isDark = body.classList.contains("dark-mode");
+      body.classList.toggle("dark-mode", !isDark);
+      body.classList.toggle("light-mode", isDark);
+      themeToggle.textContent = isDark ? "🌙" : "🌞";
+      localStorage.setItem("mode", isDark ? "light" : "dark");
+    });
+  } else {
+    console.warn("Theme toggle button not found.");
+  }
 
-  // Array of random sentences
+  // Random sentence logic
   const randomSentences = [
     "Loading your experience...",
     "Preparing awesomeness...",
@@ -37,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "Hang tight, we're working on it!",
   ];
 
-  // Function to display a random sentence
   function displayRandomSentence() {
     const sentenceElement = document.querySelector(".random-sentence");
     if (sentenceElement) {
@@ -46,21 +43,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Set an interval to update the random sentence every 2 seconds
+  // Update loading sentence every 0.5 seconds
   const sentenceInterval = setInterval(displayRandomSentence, 500);
 
-  // Hide the loader and show the webpage after the page loads
+  // Hide loader and show content after page loads
   window.addEventListener("load", () => {
     console.log("Page loaded, hiding loader...");
     const loader = document.querySelector(".loader");
     const content = document.querySelector(".content");
+
     if (loader && content) {
-      // Add a delay before hiding the loader (e.g., 2 seconds)
       setTimeout(() => {
-        loader.style.display = "none"; // Hide the loader after the delay
-        content.style.display = "block"; // Show the webpage content
-        clearInterval(sentenceInterval); // Stop updating random sentences
-      }, 2000); // 2000ms = 2 seconds
+        loader.style.display = "none";
+        content.style.display = "block";
+        clearInterval(sentenceInterval);
+      }, 2000);
     } else {
       console.error("Loader or content element not found!");
     }
